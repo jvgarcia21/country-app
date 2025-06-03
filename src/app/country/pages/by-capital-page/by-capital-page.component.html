@@ -1,2 +1,10 @@
 <country-search-input (value)="onSearch($event)" />
+
+@if (isError()){
+
+<h3 class="mt-10 ml-10">{{ isError() }}</h3>
+
+} @else{
+
 <country-list [countries]="countries()" />
+}

@@ -28,13 +28,22 @@ export class ByCapitalPageComponent {
 
 
     this.CountryService.searchByCapital(query)
-      .subscribe((countries) => {
-
-        this.isLoading.set(false);
-        this.countries.set(countries);
+      .subscribe({
+        next: (countries) => {
 
 
+          this.isLoading.set(false);
+          this.countries.set(countries);
 
+
+
+
+        },
+        error: (err) => {
+          this.isLoading.set(false);
+          this.isError.set('No se encontro un pais con esa capital');
+          this.countries.set([]);
+        }
       })
 
   }
