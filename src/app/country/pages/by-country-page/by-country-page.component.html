@@ -1,2 +1,5 @@
-<country-search-input />
-<country-list [countries]="[]" />
+<country-search-input (value)="query.set($event)" />
+@if(countryResource.hasValue()){
+
+<country-list [countries]="countryResource.value()" />
+}

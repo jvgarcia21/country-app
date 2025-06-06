@@ -33,5 +33,18 @@ export class CountryService {
     );
   };
 
+  searchByCountry(query: string): Observable<Country[]> {
+
+    query = query.toLocaleLowerCase();
+
+    return this.http.get<RESTCountry[]>(`${API_URL}/name/${query}`).pipe(
+      map((resp) => CountryMapper.mapRestCountryArrayToCountryArray(resp)),
+      catchError(error => {
+        console.log('No se pudo conseguir Pais Con ese Nombre', error);
+        return throwError(() => new Error('Failed to fetch countries '));
+      })
+    );
+  };
+
 }
 

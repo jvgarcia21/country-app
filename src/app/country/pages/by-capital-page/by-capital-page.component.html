@@ -1,10 +1,10 @@
-<country-search-input (value)="onSearch($event)" />
+<country-search-input (value)="query.set($event)" />
 
-@if (isError()){
+@if (countryResource.error()){
 
-<h3 class="mt-10 ml-10">{{ isError() }}</h3>
+<h3 class="mt-10 ml-10">{{ countryResource.error() }}</h3>
 
-} @else{
+} @if(countryResource.hasValue()){
 
-<country-list [countries]="countries()" />
+<country-list [countries]="countryResource.value()!" />
 }
