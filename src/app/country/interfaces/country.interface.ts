@@ -8,6 +8,8 @@ export interface Country {
   capital: string;
   region: string;
   population: number;
+  moneda: string;
+  numberid: string;
 
 
 }

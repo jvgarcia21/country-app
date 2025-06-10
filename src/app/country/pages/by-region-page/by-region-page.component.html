@@ -1,2 +1,23 @@
-<country-search-input (value)="onSearch($event)" />
-<country-list [countries]="[]" />
+<button class="btn btn-soft" (click)="selector.set('Africa')">Africa</button>
+<button class="btn btn-soft btn-primary" (click)="selector.set('Americas')">
+  Americas
+</button>
+<button class="btn btn-soft btn-secondary" (click)="selector.set('Asia')">
+  Asia
+</button>
+<button class="btn btn-soft btn-accent" (click)="selector.set('Europe')">
+  Europe
+</button>
+<button class="btn btn-soft btn-info" (click)="selector.set('Oceania')">
+  Oceania
+</button>
+<button class="btn btn-soft btn-success" (click)="selector.set('Antarctic')">
+  Antarctic
+</button>
+
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length == 0"
+  [isLoading]="countryResource.isLoading()"
+/>
