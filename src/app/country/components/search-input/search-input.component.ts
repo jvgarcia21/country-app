@@ -7,11 +7,10 @@ import { Component, output, input, signal, effect } from '@angular/core';
 
 })
 export class SearchInputComponent {
+  initialValue = input<string>('');
   value = output<string>();
 
-
-  inputValue = signal<string>('');
-
+  inputValue = signal<string>(this.initialValue());
   debounceEffect = effect((onCleanup) => {
 
     const value = this.inputValue();

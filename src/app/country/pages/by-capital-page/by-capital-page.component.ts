@@ -6,6 +6,7 @@ import { rxResource } from '@angular/core/rxjs-interop';
 
 import { Country } from '../../interfaces/country.interface';
 import { firstValueFrom, of } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-by-capital-page',
@@ -16,11 +17,19 @@ import { firstValueFrom, of } from 'rxjs';
 export class ByCapitalPageComponent {
 
   CountryService = inject(CountryService);
-  query = signal('');
+
+
+
+  activatedRoute = inject(ActivatedRoute);
+  queryParam = this.activatedRoute.snapshot.queryParamMap.get('query') ?? '';
+
+
+  query = signal(this.queryParam);
 
   countryResource = rxResource({
     request: () => ({ query: this.query() }),
     loader: ({ request }) => {
+      console.log({ query: request.query })
 
 
       if (!request.query) return of([]);
